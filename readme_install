@@ -21,18 +21,22 @@ sudo apt-get update
 
 ubuntu@ip-172-31-20-131:~/forkingDemo$ npx hardhat console --network sepolia
 
-await deployedContract.check("0x49777F12663f2040913414b895F2a7a599c56Fd0","0x8c2xxxxxxxxxxxxxxxxxxxxxx")
 
->
+>const contract =  await ethers.getContractFactory("Check")
+
+>const deployedContract  = await contract.deploy()
+
+>await deployedContract.check("0x49777F12663f2040913414b895F2a7a599c56Fd0","0x8c2xxxxxxxxxxxxxxxxxxxxxx")
+
 > await deployedContract.check("0x49777F12663f2040913414b895F2a7a599c56Fd0","0x8c2xxxxxxxxxxxxxxxxxxxxxxxxxx")
 18250000000000000000n
 >
 
 const  myAddress = "0x8c2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
 const  WETH_contract  = "0x49777F12663f2040913414b895F2a7a599c56Fd0"
-
 const nonce = await ethers.provider.getTransactionCount(myAddress)
+const myGasPrice = (await ethers.provider.getFeeData()).gasPrice
+const sendValueHuman = "1.0";
 
 const txBuild = {
   from: myAddress, // from,
